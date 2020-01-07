@@ -1,5 +1,5 @@
 name: rigs-of-rods
-version: "0.4.8.0"
+version: "2020.01"
 confinement: strict
 summary: Rigs of Rods
 base: core18
@@ -144,7 +144,7 @@ parts:
             make zip_and_copy_resources
             cp -R bin/content $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/
             cp -R bin/resources $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/
-            sed -i -e 's/=lib/=\/snap\/rigs-of-rods\/current\/usr\/lib\/OGRE/g' $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/plugins.cfg
+            sed -i -e 's|=lib|=/snap/rigs-of-rods/current/usr/lib/OGRE|g' $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/plugins.cfg
         build-packages:
             - libopenal-dev
             - libois-dev
