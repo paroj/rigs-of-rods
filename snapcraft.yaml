@@ -10,7 +10,7 @@ description: |
 apps:
     rigs-of-rods:
         command: desktop-launch $SNAP/build/rigs-of-rods/parts/ror/build/redist/bin/RoR
-        plugs: [opengl, x11, pulseaudio, network]
+        plugs: [opengl, x11, pulseaudio, network, joystick]
 parts:
     ogre:
         plugin: cmake
