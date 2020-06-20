@@ -1,5 +1,5 @@
 name: rigs-of-rods
-version: "2020.01"
+version: "2020.06"
 confinement: strict
 summary: Rigs of Rods
 base: core18
@@ -121,7 +121,7 @@ parts:
     ror:
         plugin: cmake
         source: https://github.com/RigsOfRods/rigs-of-rods.git
-        source-tag: "2020.01"
+        source-tag: master
         source-depth: 1
         configflags:
             - -DCMAKE_BUILD_TYPE=Release
@@ -130,11 +130,10 @@ parts:
             - -DUSE_PACKAGE_MANAGER=FALSE
         override-pull: |
              snapcraftctl pull
-             sed -i '33i#include <rapidjson/document.h>' source/main/resources/CacheSystem.h
-             sed -i '29i#include <Caelum.h>' source/main/gfx/SkyManager.h
-             sed -i '75i#include <OgreOverlayManager.h>' source/main/gameplay/RoRFrameListener.cpp
-             sed -i '27i#include <OgreOverlayManager.h>' source/main/gfx/EnvironmentMap.cpp
-             sed -i '27i#include <OgreOverlay.h>' source/main/gfx/EnvironmentMap.cpp
+             sed -i '26i#include <OgreWindowEventUtilities.h>' source/main/RoRPrerequisites.h
+             sed -i '26i#include <OgreOverlayManager.h>' source/main/RoRPrerequisites.h
+             sed -i '26i#include <OgreOverlay.h>' source/main/RoRPrerequisites.h
+             sed -i '30i#include <OIS.h>' source/main/gameplay/SceneMouse.h
              sed -i '27i#include <alc.h>' source/main/gui/panels/GUI_GameSettings.cpp
              sed -i '27i#include <OgreFont.h>' source/main/utils/WriteTextToTexture.h
         override-build: |
