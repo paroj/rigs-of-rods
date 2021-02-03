@@ -1,5 +1,5 @@
 name: rigs-of-rods
-version: "2021.01"
+version: "2021.02"
 confinement: strict
 summary: Rigs of Rods
 base: core18
