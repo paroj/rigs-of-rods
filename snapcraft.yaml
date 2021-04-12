@@ -1,5 +1,5 @@
 name: rigs-of-rods
-version: "2021.02"
+version: "2021.04"
 confinement: strict
 summary: Rigs of Rods
 base: core18
@@ -9,7 +9,7 @@ description: |
 
 apps:
     rigs-of-rods:
-        command: desktop-launch $SNAP/build/rigs-of-rods/parts/ror/build/redist/bin/RoR
+        command: desktop-launch $SNAP/usr/RoR
         plugs: [opengl, x11, pulseaudio, network, joystick]
 parts:
     ogre:
@@ -139,14 +139,12 @@ parts:
         override-pull: |
              snapcraftctl pull
              sed -i -e 's|VERSION 3.16|VERSION 3.8|g' CMakeLists.txt
-             sed -i '5ireturn()' cmake/l10n.cmake
+             sed -i -e 's|FOLLOW_SYMLINK_CHAIN||g' source/main/CMakeLists.txt
+             sed -i '80ireturn()' cmake/Macros.cmake
         override-build: |
             mkdir -p bin/languages
             snapcraftctl build
-            make zip_and_copy_resources
-            cp -R bin/content $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/
-            cp -R bin/resources $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/
-            sed -i -e 's|=lib|=/snap/rigs-of-rods/current/usr/lib/OGRE|g' $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PART_BUILD/redist/bin/plugins.cfg
+            sed -i -e 's|=lib|=/snap/rigs-of-rods/current/usr/lib/OGRE|g' $SNAPCRAFT_PART_INSTALL/usr/plugins.cfg
         build-packages:
             - libopenal-dev
             - libois-dev
